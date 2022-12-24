@@ -24,7 +24,18 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="content wow fadeInRight" data-wow-delay=".4s">
-
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+                        @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
                         <h2 class="text-center mb-5">{{ $subtitle }}</h2>
                         <div class="d-block justify-content-around">
                             <ul class="nav nav-pills" id="myTab" role="tablist">
@@ -42,19 +53,29 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="tambah-tab-pane" role="tabpanel"
                                     aria-labelledby="tambah-tab" tabindex="0">
-                                    <form>
+
+                                    <form action="{{ route('gejala.store') }}" method="POST">
+                                        @csrf
                                         <div class="mb-3 row mt-3">
-                                            <label for="kodeGejala" class="col-sm-2 col-form-label">Kode</label>
+                                            <label for="kode_gejala" class="col-sm-2 col-form-label">Kode</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="kodeGejala" name="kodeGejala"
-                                                    placeholder="Kode Gejala" value="{{ old('kodeGejala') }}">
+                                                <input type="text" class="form-control" id="kode_gejala"
+                                                    name="kode_gejala" placeholder="Kode Gejala"
+                                                    value="{{ old('kode_gejala') }}">
+                                                @error('kode_gejala')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
+                                            <label for="nama_gejala" class="col-sm-2 col-form-label">Gejala</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                                                    value="{{ old('deskripsi') }}" placeholder="Deskripsi Gejala">
+                                                <input type="text" class="form-control" id="nama_gejala"
+                                                    name="nama_gejala" value="{{ old('nama_gejala') }}"
+                                                    placeholder="Deskripsi Gejala">
+                                                @error('nama_gejala')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mt-5 mb-3 text-center">
@@ -77,26 +98,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="table-group-divider text-center">
-                                                <tr>
-                                                    <td width="200">{{ $kode }}</td>
-                                                    <td>{{ $deskripsi }}</td>
-                                                    <td width="200">
-                                                        <div class="d-flex justify-content-around">
-                                                            <a href="" class="btn btn-outline-warning btn-sm">
-                                                                <span class="fa fa-pencil align-middle"
-                                                                    title="Edit"></span> | Edit
-                                                            </a>
-                                                            <form method="POST" action="">
-                                                                @csrf
-                                                                {{-- @method('delete') --}}
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-danger btn-sm"><span
-                                                                        class="align-middle fa fa-trash"></span> | Hapus
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($isi as $item)
+                                                    <tr>
+                                                        <td width="200">{{ $item['kode_gejala'] }}</td>
+                                                        <td>{{ $item['nama_gejala'] }}</td>
+                                                        <td width="200">
+                                                            <div class="d-flex justify-content-around">
+                                                                <a href="" class="btn btn-outline-warning btn-sm">
+                                                                    <span class="fa fa-pencil align-middle"
+                                                                        title="Edit"></span> | Edit
+                                                                </a>
+                                                                <form method="POST"
+                                                                    action="{{ route('gejala.destroy', $item->id) }}">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button type="submit"
+                                                                        class="btn btn-outline-danger btn-sm"><span
+                                                                            class="align-middle fa fa-trash"></span> |
+                                                                        Hapus
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

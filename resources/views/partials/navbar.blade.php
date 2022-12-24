@@ -24,19 +24,19 @@
                                     <a href="/" aria-label="Toggle navigation">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('index-konsultasi') }}" aria-label="Toggle navigation"
+                                    <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
                                         class="{{ $title == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('index-gejala') }}" aria-label="Toggle navigation"
+                                    <a href="{{ route('gejala.index') }}" aria-label="Toggle navigation"
                                         class="{{ $title == 'Gejala' ? 'active' : '' }}">Gejala</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('index-penyakit') }}" aria-label="Toggle navigation"
+                                    <a href="{{ route('penyakit.index') }}" aria-label="Toggle navigation"
                                         class="{{ $title == 'Penyakit' ? 'active' : '' }}">Penyakit</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('index-relasi') }}" aria-label="Toggle navigation"
+                                    <a href="{{ route('relasi.index') }}" aria-label="Toggle navigation"
                                         class="{{ $title == 'Relasi' ? 'active' : '' }}">Relasi</a>
                                 </li>
                             </ul>

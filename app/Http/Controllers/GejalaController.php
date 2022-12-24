@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gejala as GejalaModels;
 use Illuminate\Http\Request;
 
 class GejalaController extends Controller
@@ -17,8 +18,7 @@ class GejalaController extends Controller
         $data = [
             'title' => 'Gejala',
             'subtitle' => 'Masukan Gejala',
-            'kode' => 'Kode Gejala',
-            'deskripsi' => 'Deskripsi',
+            'isi' => GejalaModels::all(),
         ];
         return view('admin.gejala', $data);
     }
@@ -41,7 +41,24 @@ class GejalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode_gejala' => 'required|string|unique:gejalas,kode_gejala',
+            'nama_gejala' => 'required|string',
+        ]);
+
+        $gejala = GejalaModels::create([
+            'kode_gejala' => $request->kode_gejala,
+            'nama_gejala' => $request->nama_gejala,
+        ]);
+
+
+        if ($gejala) {
+            //redirect dengan pesan sukses
+            return redirect()->route('gejala.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('gejala.create')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -86,6 +103,10 @@ class GejalaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gejala = GejalaModels::find($id);
+
+        $gejala->delete();
+
+        return redirect()->route('gejala.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

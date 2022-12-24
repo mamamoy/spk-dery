@@ -40,7 +40,28 @@ class PenyakitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode' => 'required|string|unique:penyakits,kode',
+            'nama_penyakit' => 'required|string',
+            'definisi' => 'required|string',
+            'solusi' => 'required|string',
+        ]);
+
+        $penyakit = ModelsPenyakit::create([
+            'kode' => $request->kode,
+            'nama_penyakit' => $request->nama_penyakit,
+            'definisi' => $request->definisi,
+            'solusi' => $request->solusi,
+
+        ]);
+
+        if ($penyakit) {
+            //redirect dengan pesan sukses
+            return redirect()->route('index-penyakit')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('create-penyakit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -85,6 +106,10 @@ class PenyakitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $penyakit = ModelsPenyakit::find($id);
+
+        $penyakit->delete();
+
+        return redirect()->route('penyakit.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
