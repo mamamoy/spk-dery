@@ -57,10 +57,10 @@ class PenyakitController extends Controller
 
         if ($penyakit) {
             //redirect dengan pesan sukses
-            return redirect()->route('index-penyakit')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('penyakit.index')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             //redirect dengan pesan error
-            return redirect()->route('create-penyakit')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('penyakit.create')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -90,10 +90,11 @@ class PenyakitController extends Controller
         $penyakit = ModelsPenyakit::find($id);
         $data = [
             'title' => 'Edit Penyakit',
+            'subtitle' => 'Edit Data Penyakit',
             'isi' => $penyakit,
         ];
 
-        return view('penyakit.tes', $data);
+        return view('penyakit.edit', $data);
     }
 
     /**
