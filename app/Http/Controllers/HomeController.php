@@ -13,7 +13,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $data = [
+            'title' => 'Home',
+            'subtitle' => 'Dashboard',
+        ];
+        return view('home', $data);
     }
 
     /**
@@ -56,7 +61,6 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
