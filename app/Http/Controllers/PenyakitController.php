@@ -19,7 +19,7 @@ class PenyakitController extends Controller
             'subtitle' => 'Masukan Penyakit',
             'isi' => ModelsPenyakit::all(),
         ];
-        return view('admin.penyakit', $data);
+        return view('penyakit.index', $data);
     }
 
     /**
@@ -70,9 +70,13 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ModelsPenyakit $id)
     {
-        //
+        return view('penyakit.edit', [
+            "title" => "Edit Penyakit",
+            "subtitle" => "Ubah Data Penyakit",
+            "penyakit" => ModelsPenyakit::find($id)
+        ]);
     }
 
     /**
@@ -81,9 +85,15 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ModelsPenyakit $id)
     {
-        //
+        $penyakit = ModelsPenyakit::find($id);
+        $data = [
+            'title' => 'Edit Penyakit',
+            'isi' => $penyakit,
+        ];
+
+        return view('penyakit.tes', $data);
     }
 
     /**

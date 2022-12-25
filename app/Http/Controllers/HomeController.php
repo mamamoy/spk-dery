@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gejala as GejalaModels;
 use Illuminate\Http\Request;
 
-class GejalaController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +13,7 @@ class GejalaController extends Controller
      */
     public function index()
     {
-
-        $data = [
-            'title' => 'Gejala',
-            'subtitle' => 'Masukan Gejala',
-            'isi' => GejalaModels::all(),
-        ];
-        return view('gejala.index', $data);
+        return view('home');
     }
 
     /**
@@ -41,24 +34,7 @@ class GejalaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'kode_gejala' => 'required|string|unique:gejalas,kode_gejala',
-            'nama_gejala' => 'required|string',
-        ]);
-
-        $gejala = GejalaModels::create([
-            'kode_gejala' => $request->kode_gejala,
-            'nama_gejala' => $request->nama_gejala,
-        ]);
-
-
-        if ($gejala) {
-            //redirect dengan pesan sukses
-            return redirect()->route('gejala.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        } else {
-            //redirect dengan pesan error
-            return redirect()->route('gejala.create')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        //
     }
 
     /**
@@ -80,11 +56,7 @@ class GejalaController extends Controller
      */
     public function edit($id)
     {
-        return view('penyakit.edit', [
-            "title" => "Edit Penyakit",
-            "subtitle" => "Ubah Data Penyakit",
-            "penyakit" => GejalaModels::find($id)
-        ]);
+        //
     }
 
     /**
@@ -107,10 +79,6 @@ class GejalaController extends Controller
      */
     public function destroy($id)
     {
-        $gejala = GejalaModels::find($id);
-
-        $gejala->delete();
-
-        return redirect()->route('gejala.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        //
     }
 }
