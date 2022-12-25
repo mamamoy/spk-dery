@@ -36,7 +36,7 @@
                                 <strong>{{ $message }}</strong>
                             </div>
                         @endif
-                        <h2 class="text-center mb-5">{{ $subtitle }}</h2>
+                        <h2 class="text-center mb-5" id="gejala">{{ $subtitle }}</h2>
                         <div class="d-block justify-content-around">
                             <ul class="nav nav-pills" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -104,7 +104,7 @@
                                                         <td>{{ $item['nama_gejala'] }}</td>
                                                         <td width="200">
                                                             <div class="d-flex justify-content-around">
-                                                                <a href="gejala/{{ $item->id }}/edit"
+                                                                <a href="gejala.edit"
                                                                     class="btn btn-outline-warning btn-sm">
                                                                     <span class="fa fa-pencil align-middle"
                                                                         title="Edit"></span> | Edit

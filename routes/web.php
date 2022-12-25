@@ -18,7 +18,8 @@ use App\Http\Controllers\KonsultasiController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+
 
 // Route::middleware(['auth', 'user-access:admin'])->group(function () {
 //     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard.admin');
@@ -36,11 +37,13 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 //     Route::get('/create', [App\Http\Controllers\PenyakitController::class, 'create'])->name('create-penyakit');
 //     Route::post('/store', [App\Http\Controllers\PenyakitController::class, 'store'])->name('store-penyakit');
 //     Route::get('/edit/{id}', [App\Http\Controllers\PenyakitController::class, 'edit'])->name('edit-penyakit');
+//     Route::post('/update', [App\Http\Controllers\PenyakitController::class, 'update'])->name('update-penyakit');
 //     Route::delete('/delete/{id}', [App\Http\Controllers\PenyakitController::class, 'destroy'])->name('delete-penyakit');
 // });
 
 
-//     Route::get('/relasi', [App\Http\Controllers\RelasiController::class, 'index'])->name('index-relasi');
+// Route::get('/konsultasi', [App\Http\Controllers\KonsultasiController::class, 'index'])->name('index-konsultasi');
+// Route::get('/relasi', [App\Http\Controllers\RelasiController::class, 'index'])->name('index-relasi');
 // });
 
 Route::resource('gejala', GejalaController::class);

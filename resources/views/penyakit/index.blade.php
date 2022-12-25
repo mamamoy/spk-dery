@@ -36,7 +36,8 @@
                                 <strong>{{ $message }}</strong>
                             </div>
                         @endif
-                        <h2 class="text-center mb-5">{{ $subtitle }}</h2>
+
+                        <h2 class="text-center mb-5" id="penyakit">{{ $subtitle }}</h2>
                         <div class="d-block justify-content-around">
                             <ul class="nav nav-pills" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -79,8 +80,9 @@
                                         <div class="mb-3 row">
                                             <label for="definisi" class="col-sm-2 col-form-label">Definisi</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" id="definisi" name="definisi" value="{{ old('definisi') }}"
-                                                    placeholder="Deskripsi Definisi"></textarea>
+                                                <input class="form-control" id="definisi" name="definisi"
+                                                    value="{{ old('definisi') }}" placeholder="Deskripsi Definisi"
+                                                    style="height: 100px">
                                                 @error('definisi')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
@@ -123,7 +125,7 @@
                                                         <td>{{ $item['nama_penyakit'] }}</td>
                                                         <td width="200">
                                                             <div class="d-flex justify-content-around">
-                                                                <a href="/penyakit/{{ $item->id }}/edit"
+                                                                <a href="/penyakit/{{ $item['id'] }}/edit"
                                                                     class="btn btn-outline-warning btn-sm">
                                                                     <span class="fa fa-pencil align-middle"
                                                                         title="Edit"></span> | Edit

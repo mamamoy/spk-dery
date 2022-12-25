@@ -85,9 +85,11 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelsPenyakit $id)
+    public function edit($id)
     {
-        $penyakit = ModelsPenyakit::find($id);
+
+        $penyakit = ModelsPenyakit::all()->find($id);
+
         $data = [
             'title' => 'Edit Penyakit',
             'subtitle' => 'Edit Data Penyakit',
@@ -104,9 +106,34 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ModelsPenyakit $penyakit)
     {
-        //
+        $this->validate($request, [
+            'kode' => 'required|string',
+            'nama_penyakit' => 'required|string',
+            'definisi' => 'required|string',
+            'solusi' => 'required|string',
+        ]);
+
+        $penyakit = ModelsPenyakit::all()->where('id', $request->id);
+
+
+        $penyakit->first()->update([
+            'kode' => $request->kode,
+            'nama_penyakit' => $request->nama_penyakit,
+            'definisi' => $request->definisi,
+            'solusi' => $request->solusi,
+        ]);
+
+
+        if ($penyakit) {
+            //redirect dengan pesan sukses
+
+            return redirect()->route('penyakit.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('penyakit.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -121,6 +148,6 @@ class PenyakitController extends Controller
 
         $penyakit->delete();
 
-        return redirect()->route('penyakit.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('index-penyakit')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
