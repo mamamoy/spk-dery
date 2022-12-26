@@ -25,29 +25,42 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
-                                        class="{{ $title == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
+                                        class="{{ $title ?? '' == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
                                 </li>
+                                @can('admin')    
                                 <li class="nav-item">
                                     <a href="{{ route('gejala.index') }}" aria-label="Toggle navigation"
-                                        class="{{ $title == 'Gejala' ? 'active' : '' }}">Gejala</a>
+                                        class="{{ $title ?? '' == 'Gejala' ? 'active' : '' }}">Gejala</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('penyakit.index') }}" aria-label="Toggle navigation"
-                                        class="{{ $title == 'Penyakit' ? 'active' : '' }}">Penyakit</a>
+                                        class="{{ $title ?? '' == 'Penyakit' ? 'active' : '' }}">Penyakit</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('relasi.index') }}" aria-label="Toggle navigation"
-                                        class="{{ $title == 'Relasi' ? 'active' : '' }}">Relasi</a>
+                                        class="{{ $title ?? '' == 'Relasi' ? 'active' : '' }}">Relasi</a>
                                 </li>
+                                @endcan
                             </ul>
+                            @auth
                             <ul id="nav1" class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="index.html" class="active" aria-label="Toggle navigation">User</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.html" class="active" aria-label="Toggle navigation">Admin</a>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                       <button type="submit" class="btn btn-primary">Logout</button>
+                                    </form>
                                 </li>
                             </ul>
+                            @else
+                            <ul id="nav1" class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="{{ route('menu.index') }}" class="active" aria-label="Toggle navigation">User</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('menu.index') }}" class="active" aria-label="Toggle navigation">Admin</a>
+                                </li>
+                            </ul>
+                            @endauth
                         </div> <!-- navbar collapse -->
                     </nav>
                     <!-- End Navbar -->

@@ -6,6 +6,9 @@ use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\RelasiController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\KonsultasiController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +49,17 @@ Route::get('/konsultasi', [App\Http\Controllers\KonsultasiController::class, 'in
 //     Route::get('/relasi', [App\Http\Controllers\RelasiController::class, 'index'])->name('index-relasi');
 // });
 
-Route::resource('gejala', GejalaController::class);
-Route::resource('penyakit', PenyakitController::class);
-Route::resource('konsultasi', KonsultasiController::class);
-Route::resource('relasi', RelasiController::class);
+Route::resource('gejala', GejalaController::class)->middleware('admin');
+Route::resource('penyakit', PenyakitController::class)->middleware('admin');
+Route::resource('relasi', RelasiController::class)->middleware('admin');
+Route::resource('konsultasi', KonsultasiController::class)->middleware('auth');
+Route::resource('menu', MenuController::class)->middleware('guest');
+
+
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+// Route::resource('login.store', LoginController::class);
+Route::post('login', [LoginController::class, 'authenticate'])->middleware('guest');
+Route::post('logout', [LoginController::class, 'logout'])->middleware('auth');
+
+Route::resource('register', RegisterController::class)->middleware('guest');
+Route::resource('register.store', RegisterController::class)->middleware('guest');
