@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layout.main')
 
 @section('content')
     <div class="breadcrumbs">

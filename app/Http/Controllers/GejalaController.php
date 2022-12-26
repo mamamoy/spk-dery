@@ -20,7 +20,7 @@ class GejalaController extends Controller
             'subtitle' => 'Masukan Gejala',
             'isi' => GejalaModels::all(),
         ];
-        return view('admin.gejala', $data);
+        return view('gejala.index', $data);
     }
 
     /**
@@ -80,7 +80,11 @@ class GejalaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('penyakit.edit', [
+            "title" => "Edit Penyakit",
+            "subtitle" => "Ubah Data Penyakit",
+            "penyakit" => GejalaModels::find($id)
+        ]);
     }
 
     /**

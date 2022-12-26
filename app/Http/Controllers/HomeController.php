@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Konsultasi;
 use Illuminate\Http\Request;
 
-class KonsultasiController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +13,12 @@ class KonsultasiController extends Controller
      */
     public function index()
     {
-        $title = 'Konsultasi';
 
         $data = [
-            'title' => $title,
-            'subtitle' => 'Jawablah Pertanyaan Ini!',
-            'pertanyaan' => Konsultasi::cari(),
+            'title' => 'Home',
+            'subtitle' => 'Dashboard',
         ];
-        return view('konsultasi.hasil', $data);
+        return view('home', $data);
     }
 
     /**
@@ -64,7 +61,6 @@ class KonsultasiController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**

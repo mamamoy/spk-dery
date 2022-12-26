@@ -20,7 +20,7 @@ class RelasiController extends Controller
             'namaPenyakit' => 'Nama Penyakit',
             'gejala' => 'Deskripsi Gejala'
         ];
-        return view('admin.relasi', $data);
+        return view('relasi.index', $data);
     }
 
     /**
