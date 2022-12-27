@@ -6,21 +6,24 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>SPDPB | {{ $title }}</title>
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.svg') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dist/images/favicon.svg') }}" />
     {{-- Google Icons --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/LineIcons.3.0.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/tiny-slider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/glightbox.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}" />
 
-    <link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link href="{{ asset('plugins/fontawesome/css/all.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
@@ -39,6 +42,8 @@
             });
         });
     </script>
+
+
 
 </head>
 
@@ -71,15 +76,16 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
-    <script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/js/count-up.min.js') }}"></script>
-    <script src="{{ asset('assets/js/imagesloaded.min.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/fontawesome/js/all.js') }}"></script>
+    <script src="{{ asset('dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dist/js/wow.min.js') }}"></script>
+    <script src="{{ asset('dist/js/tiny-slider.js') }}"></script>
+    <script src="{{ asset('dist/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('dist/js/count-up.min.js') }}"></script>
+    <script src="{{ asset('dist/js/imagesloaded.min.js') }}"></script>
+    <script src="{{ asset('dist/js/isotope.min.js') }}"></script>
+    <script src="{{ asset('dist/js/main.js') }}"></script>
+    <script src="{{ asset('plugins/fontawesome/js/all.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     <script>
@@ -155,6 +161,7 @@
             );
         });
     </script>
+    @stack('script')
 </body>
 
 </html>

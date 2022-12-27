@@ -10,4 +10,9 @@ class Gejala extends Model
     use HasFactory;
     protected $table = 'gejalas';
     protected $fillable = ['kode_gejala', 'nama_gejala'];
+
+    public function relasiPenyakit()
+    {
+        return $this->hasMany(Relasi::class, 'id_gejala');
+    }
 }

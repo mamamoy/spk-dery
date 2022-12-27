@@ -148,6 +148,6 @@ class PenyakitController extends Controller
 
         $penyakit->delete();
 
-        return redirect()->route('index-penyakit')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('penyakit.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

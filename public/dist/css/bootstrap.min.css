@@ -601,7 +601,7 @@ progress {
 }
 
 .blockquote-footer::before {
-    content: "— "
+    content: "â€” "
 }
 
 .img-fluid {

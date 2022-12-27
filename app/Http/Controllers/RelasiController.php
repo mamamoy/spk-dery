@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gejala;
+use App\Models\Penyakit;
+use App\Models\Relasi;
 use Illuminate\Http\Request;
 
 class RelasiController extends Controller
@@ -13,14 +16,16 @@ class RelasiController extends Controller
      */
     public function index()
     {
+        $nama_penyakit = Penyakit::all();
+        $nama_gejala = Gejala::all();
 
         $data = [
             'title' => 'Relasi',
             'subtitle' => 'Relasi Penyakit Dan Gejala',
-            'namaPenyakit' => 'Nama Penyakit',
-            'gejala' => 'Deskripsi Gejala'
+            'penyakit' => $nama_penyakit,
+            'gejala' => $nama_gejala,
         ];
-        return view('relasi.index', $data);
+        return view('relasi.hasil', $data);
     }
 
     /**
@@ -41,7 +46,34 @@ class RelasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'relasi_penyakit' => 'required',
+            'relasi_gejala' => 'required',
+        ]);
+
+        // dd($request);
+        $countGejala = count($request->relasi_gejala);
+
+        for ($i = 0; $i < $countGejala; $i++) {
+            $relasi = new Relasi();
+            $relasi->id_gejala = $request->relasi_gejala[$i];
+            $relasi->id_penyakit = $request->relasi_penyakit;
+            $relasi->save();
+        }
+
+        // $relasi = Relasi::create([
+        //     'id_gejala' => $request->relasi_gejala,
+        //     'id_penyakit' => $request->relasi_penyakit,
+        // ]);
+
+
+        if ($relasi) {
+            //redirect dengan pesan sukses
+            return redirect()->route('relasi.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('relasi.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -87,5 +119,24 @@ class RelasiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ajaxRequestPost(Request $request)
+    {
+        $relasi_penyakit = $request->relasi_penyakit;
+
+        $relasi = Penyakit::with('relasiPenyakit')->find($relasi_penyakit);
+
+        // dd($relasi);
+        $listRelasi = '';
+
+        if ($relasi) {
+            foreach ($relasi->relasiPenyakit as $rp) {
+                // dd($rp);
+                $listRelasi =  $listRelasi . '<li>' . $rp->dataGejala->nama_gejala . '</li>';
+            }
+        }
+        dd($listRelasi);
+        return $listRelasi;
     }
 }

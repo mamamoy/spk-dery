@@ -80,11 +80,15 @@ class GejalaController extends Controller
      */
     public function edit($id)
     {
-        return view('penyakit.edit', [
-            "title" => "Edit Penyakit",
-            "subtitle" => "Ubah Data Penyakit",
-            "penyakit" => GejalaModels::find($id)
-        ]);
+        $gejala = GejalaModels::all()->find($id);
+
+        $data = [
+            'title' => 'Edit Gejala',
+            'subtitle' => 'Edit Data Gejala',
+            'isi' => $gejala,
+        ];
+
+        return view('gejala.edit', $data);
     }
 
     /**
@@ -94,9 +98,30 @@ class GejalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, GejalaModels $gejala)
     {
-        //
+        $this->validate($request, [
+            'kode_gejala' => 'required|string',
+            'nama_gejala' => 'required|string',
+        ]);
+
+        $gejala = GejalaModels::all()->where('id', $request->id);
+
+
+        $gejala->first()->update([
+            'kode_gejala' => $request->kode_gejala,
+            'nama_gejala' => $request->nama_gejala,
+        ]);
+
+
+        if ($gejala) {
+            //redirect dengan pesan sukses
+
+            return redirect()->route('gejala.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('gejala.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**

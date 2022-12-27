@@ -24,34 +24,57 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="content wow fadeInRight" data-wow-delay=".4s">
+                        <form action="{{ route('relasi.store') }}" method="POST">
+                            @csrf
 
-                        <h2 class="text-center mb-5">{{ $subtitle }}</h2>
-                        <div class="d-block justify-content-around">
-                            <h4>Nama Penyakit</h4>
-                            <div class="col-6 ms-5 mb-5">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="1">{{ $namaPenyakit }}</option>
-                                    <option value="2">{{ $namaPenyakit }}</option>
-                                    <option value="3">{{ $namaPenyakit }}</option>
-                                </select>
-                            </div>
-                            <h4>Daftar Gejala</h4>
-                            <div class="table-responsive ms-5">
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" width="100">1</th>
-                                            <td>{{ $gejala }}</td>
-                                        </tr>
+                            <h2 class="text-center mb-5">{{ $subtitle }}</h2>
+                            <div class="d-block justify-content-around">
+                                <h4>Nama Penyakit</h4>
+                                <div class="col-6 ms-5 mb-5">
+                                    <select class="form-control select2" name="relasi_penyakit" style="width: 100%;">
+                                        <option value="">Pilih Penyakit</option>
+                                        @foreach ($penyakit as $p)
+                                            <option value="{{ $p->id }}">
+                                                {{ $p->kode }} - {{ $p->nama_penyakit }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <h4>Daftar Gejala</h4>
+                                <div class="col-6 ms-5 mb-5">
 
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
+                                    <select class="select2-multiple form-control" name="relasi_gejala[]" multiple="multiple"
+                                        style="width: 100%">
+                                        {{-- <option value="">Pilih Gejala</option> --}}
+                                        @foreach ($gejala as $g)
+                                            <option value="{{ $g->id }}">
+                                                {{ $g->kode_gejala }} - {{ $g->nama_gejala }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mt-5 mb-3 text-center">
+                                    <button type="submit" class="btn btn-success"><span
+                                            class="fa fa-bookmark align-middle"></span> |
+                                        Simpan
+                                    </button>
+                                </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('.select2-multiple').select2({
+                // width: 'resolve',
+                placeholder: 'Pilih Gejala',
+                allowClear: true,
+            });
+        });
+    </script>
+@endpush

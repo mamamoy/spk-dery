@@ -104,7 +104,7 @@
                                                         <td>{{ $item['nama_gejala'] }}</td>
                                                         <td width="200">
                                                             <div class="d-flex justify-content-around">
-                                                                <a href="gejala.edit"
+                                                                <a href="/gejala/{{ $item->id }}/edit"
                                                                     class="btn btn-outline-warning btn-sm">
                                                                     <span class="fa fa-pencil align-middle"
                                                                         title="Edit"></span> | Edit

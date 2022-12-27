@@ -21,7 +21,7 @@ class KonsultasiController extends Controller
             'subtitle' => 'Jawablah Pertanyaan Ini!',
             'pertanyaan' => Konsultasi::cari(),
         ];
-        return view('konsultasi.hasil', $data);
+        return view('konsultasi.index', $data);
     }
 
     /**
