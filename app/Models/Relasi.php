@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Relasi extends Model
 {
     use HasFactory;
 
     protected $table = 'relasis';
-    protected $fillable = ['id_gejala', 'id_penyakit'];
+    protected $fillable = ['gejala_id', 'penyakit_id'];
 
     public function dataPenyakit()
     {
@@ -18,6 +19,6 @@ class Relasi extends Model
     }
     public function dataGejala()
     {
-        return $this->belongsToMany(Gejala::class, 'gejalas');
+        return $this->hasMany(Gejala::class, 'id');
     }
 }

@@ -15,10 +15,10 @@ class CreateRelasisTable extends Migration
     {
         Schema::create('relasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_gejala');
-            $table->foreign('id_gejala')->references('id')->on('gejalas')->cascadeOnDelete();
-            $table->unsignedBigInteger('id_penyakit');
-            $table->foreign('id_penyakit')->references('id')->on('penyakits')->cascadeOnDelete();
+            $table->unsignedBigInteger('gejala_id');
+            $table->foreign('gejala_id')->references('id')->on('gejalas')->cascadeOnDelete();
+            $table->unsignedBigInteger('penyakit_id');
+            $table->foreign('penyakit_id')->references('id')->on('penyakits')->cascadeOnDelete();
             $table->timestamps();
         });
     }

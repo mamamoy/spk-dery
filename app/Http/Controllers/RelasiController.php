@@ -6,6 +6,9 @@ use App\Models\Gejala;
 use App\Models\Penyakit;
 use App\Models\Relasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
+use function PHPUnit\Framework\returnValue;
 
 class RelasiController extends Controller
 {
@@ -24,6 +27,7 @@ class RelasiController extends Controller
             'subtitle' => 'Relasi Penyakit Dan Gejala',
             'penyakit' => $nama_penyakit,
             'gejala' => $nama_gejala,
+
         ];
         return view('relasi.hasil', $data);
     }
@@ -56,15 +60,10 @@ class RelasiController extends Controller
 
         for ($i = 0; $i < $countGejala; $i++) {
             $relasi = new Relasi();
-            $relasi->id_gejala = $request->relasi_gejala[$i];
-            $relasi->id_penyakit = $request->relasi_penyakit;
+            $relasi->gejala_id = $request->relasi_gejala[$i];
+            $relasi->penyakit_id = $request->relasi_penyakit;
             $relasi->save();
         }
-
-        // $relasi = Relasi::create([
-        //     'id_gejala' => $request->relasi_gejala,
-        //     'id_penyakit' => $request->relasi_penyakit,
-        // ]);
 
 
         if ($relasi) {
@@ -124,19 +123,32 @@ class RelasiController extends Controller
     public function ajaxRequestPost(Request $request)
     {
         $relasi_penyakit = $request->relasi_penyakit;
+        // dd($relasi_penyakit);
 
-        $relasi = Penyakit::with('relasiPenyakit')->find($relasi_penyakit);
+        $relasi = Relasi::where('penyakit_id', $relasi_penyakit)->get();
+
+        $count = count($relasi);
 
         // dd($relasi);
+
+        $data = $relasi;
         $listRelasi = '';
 
         if ($relasi) {
-            foreach ($relasi->relasiPenyakit as $rp) {
-                // dd($rp);
-                $listRelasi =  $listRelasi . '<li>' . $rp->dataGejala->nama_gejala . '</li>';
+            foreach ($data as $t) {
+                $hasil[] = [
+                    'id' => $t->gejala_id,
+                    $yu = Gejala::with('Relasi')->where('id', $t->gejala_id)->first(),
+                    'nama' => $yu->nama_gejala,
+                ];
+            }
+            foreach ($hasil as $h) {
+                # code...
+
+                $listRelasi = $listRelasi . '<li class="list-group-item">' . $h['nama'] . '</li>';
             }
         }
-        dd($listRelasi);
+        // dd($listRelasi);
         return $listRelasi;
     }
 }

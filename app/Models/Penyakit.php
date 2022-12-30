@@ -11,12 +11,12 @@ class Penyakit extends Model
     protected $table = 'penyakits';
     protected $fillable = ['kode', 'nama_penyakit', 'definisi', 'solusi'];
 
-    public function relasiGejala()
+    public function Gejala()
     {
-        return $this->hasMany(Relasi::class, 'id_gejala');
+        return $this->hasMany(Gejala::class);
     }
-    public function relasiPenyakit()
+    public function Relasi()
     {
-        return $this->hasMany(Relasi::class, 'id_penyakit');
+        return $this->belongsTo(Relasi::class, 'relasis');
     }
 }

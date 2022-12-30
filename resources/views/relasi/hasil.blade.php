@@ -39,11 +39,12 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="list">
-                        <ol class="listOrder">
+                        <h4>Daftar Gejala</h4>
+                        <div class="col-6 ms-5 mb-5">
+                            <ul class="list-group list-group-flush listOrder">
 
-                        </ol>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

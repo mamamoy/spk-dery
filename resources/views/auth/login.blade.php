@@ -6,10 +6,9 @@
                 <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">{{ $title }}</h1>
-                        {{-- <ul class="breadcrumb-nav">
-                            <li>Admin</li>
-                            <li>{{ $title }}</li>
-                        </ul> --}}
+                        <ul class="breadcrumb-nav">
+                            <li>Forward Chaining</li>
+                        </ul>
                     </div>
                 </div>
 

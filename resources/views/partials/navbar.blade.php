@@ -4,11 +4,8 @@
             <div class="col-lg-12">
                 <div class="nav-inner ">
                     <!-- Start Navbar -->
-                    <p class="fw-bold d-flex float-start" style="width: 6rem" href="index.html">
-                        <a class="text-white">Forward Chaining</a>
-                    </p>
                     <p class="navbar-brand text-center mt-3" href="index.html">
-                        <a class="navbar-brand fs-1 fw-bold">Sistem Pakar Diagnosa Penyakit Balita</a>
+                        <a class="navbar-brand fs-1 fw-bold text-center">Sistem Pakar Diagnosa Penyakit Balita</a>
                     </p>
                     <nav class="navbar navbar-expand-lg ">
                         <button class="navbar-toggler mobile-menu-btn align-middle" type="button"
@@ -24,43 +21,57 @@
                                     <a href="/" aria-label="Toggle navigation">Home</a>
                                 </li>
 
-                                @can('guest')
-                                    <li class="nav-item">
-                                        <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
-                                            class="{{ $title == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
-                                    </li>
-                                @endcan
-                                @can('admin')
-                                    <li class="nav-item">
-                                        <a href="{{ route('gejala.index') }}" aria-label="Toggle navigation"
-                                            class="{{ $title == 'Gejala' ? 'active' : '' }}">Gejala</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('penyakit.index') }}" aria-label="Toggle navigation"
-                                            class="{{ $title == 'Penyakit' ? 'active' : '' }}">Penyakit</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('relasi.index') }}" aria-label="Toggle navigation"
-                                            class="{{ $title == 'Relasi' ? 'active' : '' }}">Relasi</a>
-                                    </li>
-                                @endcan
+
+                                @auth
+                                    @can('admin')
+                                        <li class="nav-item">
+                                            <a href="{{ route('gejala.index') }}" aria-label="Toggle navigation"
+                                                class="{{ $title == 'Gejala' ? 'active' : '' }}">Gejala</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('penyakit.index') }}" aria-label="Toggle navigation"
+                                                class="{{ $title == 'Penyakit' ? 'active' : '' }}">Penyakit</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('relasi.index') }}" aria-label="Toggle navigation"
+                                                class="{{ $title == 'Relasi' ? 'active' : '' }}">Relasi</a>
+                                        </li>
+                                    @else()
+                                        <li class="nav-item">
+                                            <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
+                                                class="{{ $title == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
+                                        </li>
+                                    @endcan
+                                @endauth
                             </ul>
                             @auth
-                                <ul id="nav1" class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="active" aria-label="Toggle navigation">User</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="active" aria-label="Toggle navigation">Admin</a>
-                                    </li>
-                                </ul>
+                                @can('admin')
+                                    <ul id="nav1" class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                                data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
+                                                aria-expanded="false" aria-label="Toggle navigation">Admin</a>
+                                            <ul class="sub-menu collapse" id="submenu-1-1">
+                                                <li class="nav-item"><a href="/logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                @else
+                                    <ul id="nav1" class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                                data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
+                                                aria-expanded="false" aria-label="Toggle navigation">User</a>
+                                            <ul class="sub-menu collapse" id="submenu-1-1">
+                                                <li class="nav-item"><a href="/logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                @endcan
                             @else
                                 <ul id="nav1" class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="active" aria-label="Toggle navigation">User</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="active" aria-label="Toggle navigation">Admin</a>
+                                        <a href="/login" aria-label="Toggle navigation">Login</a>
                                     </li>
                                 </ul>
                             @endauth

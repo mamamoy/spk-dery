@@ -11,8 +11,12 @@ class Gejala extends Model
     protected $table = 'gejalas';
     protected $fillable = ['kode_gejala', 'nama_gejala'];
 
-    public function relasiPenyakit()
+    public function Penyakit()
     {
-        return $this->hasMany(Relasi::class, 'id_gejala');
+        return $this->belongsTo(Penyakit::class);
+    }
+    public function Relasi()
+    {
+        return $this->belongsTo(Relasi::class);
     }
 }
