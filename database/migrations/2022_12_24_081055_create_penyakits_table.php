@@ -17,9 +17,8 @@ class CreatePenyakitsTable extends Migration
             $table->id();
             $table->char('kode', 8);
             $table->string('nama_penyakit');
-            $table->text('exerpt');
-            $table->text('definisi');
-            $table->text('solusi');
+            $table->text('definisi')->nullable();
+            $table->text('solusi')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
