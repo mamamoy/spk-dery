@@ -37,10 +37,7 @@
                                                 class="{{ $title == 'Relasi' ? 'active' : '' }}">Relasi</a>
                                         </li>
                                     @else()
-                                        <li class="nav-item">
-                                            <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
-                                                class="{{ $title == 'Konsultasi' || $title == 'Hasil Diagnosa' ? 'active' : '' }}">Konsultasi</a>
-                                        </li>
+                                        
                                         <li class="nav-item">
                                             <a class="dd-menu collapsed {{ $title == 'Konsultasi' ? 'active' : '' }}" href="javascript:void(0)" data-bs-toggle="collapse"
                                                 data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
