@@ -39,7 +39,16 @@
                                     @else()
                                         <li class="nav-item">
                                             <a href="{{ route('konsultasi.index') }}" aria-label="Toggle navigation"
-                                                class="{{ $title == 'Konsultasi' ? 'active' : '' }}">Konsultasi</a>
+                                                class="{{ $title == 'Konsultasi' || $title == 'Hasil Diagnosa' ? 'active' : '' }}">Konsultasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dd-menu collapsed {{ $title == 'Konsultasi' ? 'active' : '' }}" href="javascript:void(0)" data-bs-toggle="collapse"
+                                                data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
+                                                aria-expanded="false" aria-label="Toggle navigation">Konsultasi</a>
+                                            <ul class="sub-menu collapse" id="submenu-1-1">
+                                                <li class="nav-item active"><a href="{{ route('konsultasi.create') }}">Input</a></li>
+                                                <li class="nav-item"><a href="{{ route('konsultasi.index') }}">Hasil Diagnosa</a></li>
+                                            </ul>
                                         </li>
                                     @endcan
                                 @endauth
