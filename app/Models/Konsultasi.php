@@ -7,18 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Konsultasi extends Model
 {
-    private static $konsul = [
-        [
-            'pertanyaan' => 'Apakah anak anda mengalami demam?',
-        ],
-        [
-            'pertanyaan' => 'Apakah anak anda mengalami batuk?',
-        ],
+    use HasFactory;
+    protected $table = 'konsuls';
+    protected $fillable =['penyakit_id', 'user_id'];
 
-    ];
-
-    public static function cari()
+    public function dataPenyakit()
     {
-        return self::$konsul;
+        return $this->belongsTo(Penyakit::class);
     }
 }

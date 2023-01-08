@@ -20,11 +20,20 @@
     <link rel="stylesheet" href="{{ asset('dist/css/tiny-slider.css') }}" />
     <link rel="stylesheet" href="{{ asset('dist/css/glightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/step.css') }}" />
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .hidden {
+          display: none;
+        }
+    </style>
 
     <link href="{{ asset('plugins/fontawesome/css/all.css') }}" rel="stylesheet">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -86,6 +95,7 @@
     <script src="{{ asset('dist/js/main.js') }}"></script>
     <script src="{{ asset('plugins/fontawesome/js/all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
 
 
     <script>

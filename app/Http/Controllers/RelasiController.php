@@ -6,9 +6,6 @@ use App\Models\Gejala;
 use App\Models\Penyakit;
 use App\Models\Relasi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-
-use function PHPUnit\Framework\returnValue;
 
 class RelasiController extends Controller
 {
@@ -29,7 +26,7 @@ class RelasiController extends Controller
             'gejala' => $nama_gejala,
 
         ];
-        return view('relasi.hasil', $data);
+        return view('relasi.index', $data);
     }
 
     /**

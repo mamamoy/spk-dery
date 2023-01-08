@@ -16,37 +16,79 @@
             </div>
         </div>
     </div>
-    <!-- End Breadcrumbs -->
 
-    <!-- Start About Area -->
-    <section class="about section">
+    <div class="services section">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col-12">
-                    <div class="content wow fadeInRight" data-wow-delay=".4s">
-                        <h2 class="text-center">{{ $subtitle }}</h2>
-                        @foreach ($pertanyaan as $p)
-                            <p class="text-center">{{ $p['pertanyaan'] }}</p>
-                        @endforeach
-                        <div class="d-flex justify-content-around">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Ya
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Tidak
-                                </label>
-                            </div>
-                        </div>
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Data Pasien</h2>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="single-service text-start">
+                        <div class="mb-3 row">
+                            <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control-plaintext" id="nama" value="{{$nama}}" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="usia" class="col-sm-2 col-form-label">Usia</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" id="usia" value="{{$usia}}" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jenis_kelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" id="jenis_kelamin" value="{{$jenisKelamin}}" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Hasil Diagnosa</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="single-service text-start">
+                        <div class="mb-3 row">
+                            <label for="nama" class="col-sm-2 col-form-label">Penyakit</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" id="nama" value="{{$penyakit}}" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="usia" class="col-sm-2 col-form-label">Gejala</label>
+                            <div class="col-sm-10">
+                                @foreach ($gejala as $g)
+                                    <ol>
+                                    <li>{{$g['nama']}}</li>
+                                    </ol>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="jenis_kelamin" class="col-sm-2 col-form-label">Solusi</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control-plaintext" id="jenis_kelamin" value="" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </section>
+    </div>
 @endsection

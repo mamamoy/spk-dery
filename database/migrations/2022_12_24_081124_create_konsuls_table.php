@@ -16,6 +16,10 @@ class CreateKonsulsTable extends Migration
         Schema::create('konsuls', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('penyakit_id');
+            $table->foreign('penyakit_id')->references('id')->on('penyakits')->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
