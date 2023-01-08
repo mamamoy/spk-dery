@@ -19,7 +19,8 @@ class KonsultasiController extends Controller
     public function index()
     {
         $title = 'Hasil Diagnosa';
-        $konsul = Konsultasi::get()->first();
+        $konsul = Konsultasi::where('user_id', Auth::id())->get()->last();
+        // dd($konsul->penyakit_id);
         $penyakit = Penyakit::where('id', $konsul->penyakit_id)->get()->first();
         $relasi = Relasi::where('penyakit_id', $konsul->penyakit_id)->get();
 
@@ -154,10 +155,10 @@ class KonsultasiController extends Controller
 
         if ($konsul) {
             //redirect dengan pesan sukses
-            return redirect()->route('konsultasi.hasil')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('konsultasi.index')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             //redirect dengan pesan error
-            return redirect()->route('konsultasi.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('konsultasi.create')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
